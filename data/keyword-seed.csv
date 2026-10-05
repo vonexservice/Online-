@@ -1,0 +1,18 @@
+domain,cluster,keyword,intent,location,priority,status
+www.vonex.ca,repair,copier repair Saskatoon,local commercial,Saskatoon,high,seed
+www.vonex.ca,repair,printer repair Saskatoon,local commercial,Saskatoon,high,seed
+www.vonex.ca,service,copier service Saskatoon,local commercial,Saskatoon,high,seed
+www.vonex.ca,leasing,copier leasing Saskatoon,commercial,Saskatoon,high,seed
+www.vonex.ca,office equipment,office equipment Saskatoon,commercial,Saskatoon,high,seed
+www.vonex.ca,managed print,managed print services Saskatchewan,commercial,Saskatchewan,high,seed
+www.vonex.ca,repair,printer service Regina,local commercial,Regina,high,seed
+www.vonex.ca,repair,copier repair Regina,local commercial,Regina,high,seed
+www.vonex.ca,office equipment,office equipment Regina,commercial,Regina,high,seed
+shop.vonex.ca,toner,toner cartridges Canada,ecommerce,Canada,high,seed
+shop.vonex.ca,ink,printer ink Canada,ecommerce,Canada,high,seed
+shop.vonex.ca,brother,Brother toner Canada,ecommerce,Canada,high,seed
+shop.vonex.ca,hp,HP toner Canada,ecommerce,Canada,high,seed
+shop.vonex.ca,canon,Canon toner Canada,ecommerce,Canada,high,seed
+shop.vonex.ca,compatible,compatible toner Canada,ecommerce,Canada,high,seed
+shop.vonex.ca,zebra,Zebra labels Canada,ecommerce,Canada,medium,seed
+shop.vonex.ca,products,printer supplies Canada,ecommerce,Canada,high,seed
