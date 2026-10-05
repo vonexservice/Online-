@@ -1,0 +1,42 @@
+project: vonex-seo-growth-engine
+account: vonexservices@gmail.com
+
+sites:
+  service:
+    domain: https://www.vonex.ca
+    market: Canada
+    primary_region: Saskatchewan
+    initial_city: Saskatoon
+  shop:
+    domain: https://shop.vonex.ca
+    market: Canada
+
+research:
+  competitor_gap: true
+  keyword_gap: true
+  serp_analysis: true
+  backlink_gap: true
+  content_gap: true
+  weekly_review: true
+
+publishing:
+  weekly_actions_target: 10-20
+  automated_mass_link_building: false
+  thin_content: false
+  require_human_value: true
+
+priority:
+  first_local_market: Saskatoon
+  second_local_market: Regina
+  ecommerce_market: Canada
+
+data_sources:
+  first_party:
+    - Google Search Console
+    - Google Analytics 4
+    - Shopify
+  competitive:
+    - Semrush
+    - Ahrefs
+  web_research:
+    - Google Search
