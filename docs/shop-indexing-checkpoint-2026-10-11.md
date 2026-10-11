@@ -50,3 +50,47 @@ The prior working baseline in the October recovery plan cited approximately 344K
 - Do not mass-create redirects for supplier URLs.
 - Do not change canonical or URL patterns without sampling and validating the intended target.
 - Do not treat sitemap “0 indexed” fields as the site's total indexed-page count.
+
+
+## Live verification added on 2026-10-11
+
+### Search Console performance snapshot
+For `https://www.shop.vonex.ca/`, the latest 28-day Search Console summary returned:
+- 74 clicks (up 12 versus the preceding 28-day period)
+- 25,773 impressions (down 11,331)
+- CTR approximately 0.287% (up about 0.120 percentage points)
+- Average position approximately 12.78 (worse by about 0.88 positions)
+
+Treat this as a short-term signal, not a conclusion about the effect of the recent theme changes. The property `https://shop.vonex.ca/` is listed in the connected account but Google denied data access for that exact URL-prefix property. The accessible `www.shop.vonex.ca` property was used for these inspections.
+
+### URL Inspection samples
+1. `https://www.shop.vonex.ca/products/hp-659a-black-laserjet-toner`
+   - PASS; submitted and indexed
+   - Crawl allowed and fetch successful
+   - Google-selected canonical matches the user-declared canonical
+   - Google lists a product-card URL with `pr_prod_strat`, `pr_rec_id`, `pr_rec_pid`, `pr_ref_pid`, and `pr_seq` as a referring URL. This proves Google has encountered the tracking-parameter path, but does not by itself prove it remains linked from every current live page.
+
+2. HP 659A tracking-parameter URL
+   - `Alternate page with proper canonical tag`
+   - Google-selected canonical is the clean `/products/hp-659a-black-laserjet-toner` URL.
+   - Last crawl for the parameter URL was 2026-06-09, so this is historical evidence, not proof of a newly generated live link.
+
+3. `https://www.shop.vonex.ca/collections/canon-ink-cartridges-canada?page=9&grid_list=grid-view`
+   - PASS; submitted and indexed; crawl allowed and fetch successful
+   - User-declared canonical omits `grid_list=grid-view`, but Google-selected canonical includes it.
+   - This is a specific pagination/canonical mismatch to investigate. Do not mass-canonicalize or block all pagination based on this single sample; compare other pages and the intended pagination strategy first.
+
+### Live Shopify theme status
+A read-only Shopify Admin API query confirmed:
+- Current live theme: **Vonex - Link & Pagination Fix 2026-10-07** (`MAIN`).
+- **Vonex SEO - Clean Product URLs** remains `UNPUBLISHED`.
+- In the live theme's `snippets/product-grid-item.liquid`, `product_link` is assigned directly from `product.url`.
+- In the unpublished Clean Product URLs theme, `product_link` uses `product.url | within: collection` and then preserves only a legitimate `variant=` parameter when rebuilding the URL.
+
+Do not publish the unpublished theme as-is without review: using `within: collection` can create collection-scoped product paths, which may introduce additional URL variants. The safe next step is a targeted code review and a minimal patch that emits the preferred clean product URL, preserves legitimate variant selection, and removes tracking parameters without creating collection-scoped duplicates. Test the affected product-card and recommendation paths before deployment.
+
+### Sitemap report caveat
+The accessible `www.shop.vonex.ca` property currently shows two sitemap indexes, with 4,364 and 8,535 submitted web URLs respectively; both sitemap reports show zero indexed in their per-content-type summary. This is not the site's total indexed-page count and must not be interpreted as such, especially because GSC separately reports approximately 15.8K indexed pages. The app sitemap was submitted on 2026-10-11 and is pending; the standard sitemap was last downloaded on 2026-10-10.
+
+### Immediate next step
+Review the live theme's product-card and recommendation URL-generation code, then prepare the smallest safe correction in a draft/preview theme. Keep the existing live theme intact until the canonical URL behavior is verified on representative product cards, product recommendations, variant links, and collection pagination.
